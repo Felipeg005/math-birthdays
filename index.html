@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Birthdays</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sen:wght@800&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 10px;
+      height: 100vh;
+      background-image: url("https://wallpaperaccess.com/full/6887704.jpg");
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 50%;
+    }
+
+    @media (max-width:600px) {
+      .logo,
+      #math-birthday-text {
+        font-family: 'Space Grotesk', sans-serif;
+        text-align: center;
+      }
+
+      .date {
+        font-family: 'Sen', sans-serif;
+        background-image: url("https://st3.depositphotos.com/9303990/17018/i/450/depositphotos_170188888-stock-photo-background-texture-of-rough-asphalt.jpg");
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 65px;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="logo">Math Birthdays</h1>
+    <img src="https://raw.githubusercontent.com/Felipeg005/math-birthdays/ca814af9cc42aab3ce6fa5daa4ba5911a0776b5e/images/Robot1.png" alt="robot-image">
+  </header>
+  <main>
+    <form class="form" onsubmit="mathBirthday(event)">
+      <label for="date">Please select your date of birth</label>
+      <input id="date-input" name="date" type="date">
+      <button id="submit-btn" type="submit">Submit date</button>
+    </form>
+    <p id="math-birthday-text"></p>
+  </main>
+  <script>
+    const mathBirthday = (event) => {
+      event.preventDefault()
+      const dateValue = document.getElementById('date-input').value;
+      const todaysDate = new Date();
+      const mathBirthdayText = document.getElementById('math-birthday-text')
+      let date = new Date(dateValue);
+      let differenceInDays = Math.round((todaysDate.getTime() - date.getTime()) / (1000 * 3600 * 24));
+      let checkMathDays = 10;
+      
+      while (true) {
+        if (differenceInDays < checkMathDays) {
+          date.setDate(date.getDate() + checkMathDays);
+          if (date != 'Invalid Date') {
+            mathBirthdayText.innerHTML = `Your next math birthday is your ${checkMathDays}-day-old birthday on:<br>
+            <span class="date">${date.getUTCDay()} ${date.toLocaleString('default', { month: 'long' })} ${date.getUTCFullYear()}</span>`;
+            break;
+          } else {
+            mathBirthdayText.innerHTML = `Your next math birthday is your ${checkMathDays}-day-old birthday,
+            we are sorry!, but this date is so far and it's not supported in your browser.`;
+            break;
+          }
+        }
+        checkMathDays = checkMathDays ** 2;
+      }
+    }
+  </script>
+</body>
+</html>
