@@ -31,11 +31,12 @@
         flex-direction: column;
         align-items: center;
         background-image: url("https://st3.depositphotos.com/9303990/17018/i/450/depositphotos_170188888-stock-photo-background-texture-of-rough-asphalt.jpg");
-        height: 85vh;
+        height: 105vh;
         clip-path: polygon(100% 0%, 100% 80%, 50% 90%, 50% 90%, 0 80%, 0 0);
       }
 
-      input {
+      input,
+      .submit-button {
         width: 40vw;
         height: 50px;
         background-color: transparent;
@@ -43,6 +44,13 @@
         border: 1px solid white;
         border-radius: 10px;
         text-align: center;
+      }
+
+      .submit-button {
+        margin: 50px 0 0 0;
+        font-family: 'Space Grotesk', sans-serif;
+        height: 10vw;
+        width: 35vw;
       }
 
       .logo,
@@ -61,6 +69,7 @@
       .date {
         font-family: 'Sen', sans-serif;
         background-image: url("https://st3.depositphotos.com/9303990/17018/i/450/depositphotos_170188888-stock-photo-background-texture-of-rough-asphalt.jpg");
+        background-clip: inherit;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-size: 65px;
@@ -69,6 +78,7 @@
       .form {
         display: flex;
         flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -78,7 +88,7 @@
     <h1 class="logo">Math Birthdays</h1>
     <form class="form" onsubmit="mathBirthday(event)">
       <input id="date-input" name="date" type="date">
-      <button id="submit-btn" type="submit">Submit date</button>
+      <button id="submit-btn" class="submit-button" type="submit">Submit your date</button>
     </form>
     <img class="robot1-img" src="https://raw.githubusercontent.com/Felipeg005/math-birthdays/development/images/Robot1.png" alt="robot-image">
   </header>
