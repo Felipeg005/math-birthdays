@@ -34,6 +34,7 @@
         background-image: url("https://st3.depositphotos.com/9303990/17018/i/450/depositphotos_170188888-stock-photo-background-texture-of-rough-asphalt.jpg");
         height: 105vh;
         clip-path: polygon(100% 0%, 100% 80%, 50% 90%, 50% 90%, 0 80%, 0 0);
+        transition: 1s;
       }
 
       header.animated {
@@ -74,6 +75,7 @@
         margin: 10px 0 0 0;
         width: 200px;
         height: 180px;
+        transition: 2s;
       }
 
       #robot1.hide {
@@ -143,13 +145,15 @@
     };
 
     const restart = () => {
+      console.log('working')
       const input = document.getElementById('date-input');
+      const changedClass = document.querySelector('.animated');
       const robot1 = document.getElementById('robot1');
       const header = document.querySelector('header');
 
-      if (!robot1) {
-        robot1.classList.remove('hide');
-        header.classList.remove('animated');
+      if (changedClass) {
+        robot1.classList.toggle('hide');
+        header.classList.toggle('animated');
       }
     };
   </script>
