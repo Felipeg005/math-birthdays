@@ -34,6 +34,12 @@
         background-image: url("https://st3.depositphotos.com/9303990/17018/i/450/depositphotos_170188888-stock-photo-background-texture-of-rough-asphalt.jpg");
         height: 105vh;
         clip-path: polygon(100% 0%, 100% 80%, 50% 90%, 50% 90%, 0 80%, 0 0);
+        transition: 1s;
+      }
+
+      header.animated {
+        height: 45vh;
+        transition: 1.5s;
       }
 
       input,
@@ -63,12 +69,22 @@
         color: white;
       }
 
+      #math-birthday-text {
+        color: black;
+      }
+
       #robot1 {
         position: relative;
         left: -25%;
         margin: 10px 0 0 0;
         width: 200px;
         height: 180px;
+        transition: 2s;
+      }
+
+      #robot1.hide {
+        transition: 2s;
+        opacity: 0;
       }
 
       .date {
@@ -85,11 +101,6 @@
         flex-direction: column;
         align-items: center;
       }
-
-      #robot1.hide {
-        -webkit-transition: 2s;
-        display: none;
-      }
     }
   </style>
 </head>
@@ -97,7 +108,7 @@
   <header>
     <h1 class="logo">Math Birthdays</h1>
     <form class="form" onsubmit="mathBirthday(event)">
-      <input id="date-input" name="date" type="date">
+      <input id="date-input" name="date" type="date" onclick="restart()">
       <button id="submit-btn" class="submit-button" type="submit">Submit your date</button>
     </form>
     <img id="robot1" src="https://raw.githubusercontent.com/Felipeg005/math-birthdays/main/images/Robot1.png" alt="robot-image">
@@ -109,21 +120,23 @@
     const mathBirthday = (event) => {
       event.preventDefault()
       const dateValue = document.getElementById('date-input').value;
-      const todaysDate = new Date();
       const mathBirthdayText = document.getElementById('math-birthday-text');
-      const robot1 = document.querySelector('#robot1')
+      const robot1 = document.getElementById('robot1');
+      const header = document.querySelector('header');
+      const todaysDate = new Date();
       let date = new Date(dateValue);
       let differenceInDays = Math.round((todaysDate.getTime() - date.getTime()) / (1000 * 3600 * 24));
       let checkMathDays = 10;
 
-      robot1.classList.toggle('hide');
+      robot1.classList.add('hide');
+      header.classList.add('animated');
       
       while (true) {
         if (differenceInDays < checkMathDays) {
           date.setDate(date.getDate() + checkMathDays);
           if (date != 'Invalid Date') {
             mathBirthdayText.innerHTML = `Your next math birthday is your ${checkMathDays}-day-old birthday on:<br>
-            <span class="date">${date.getUTCDay()} ${date.toLocaleString('default', { month: 'long' })} ${date.getUTCFullYear()}</span>`;
+            <span class="date">${date.getDate()} ${date.toLocaleString('default', {month:"long"})} ${date.getFullYear()}</span>`;
             break;
           } else {
             mathBirthdayText.innerHTML = `Your next math birthday is your ${checkMathDays}-day-old birthday,
@@ -133,7 +146,19 @@
         }
         checkMathDays = checkMathDays ** 2;
       }
-    }
+    };
+
+    const restart = () => {
+      const input = document.getElementById('date-input');
+      const changedClass = document.querySelector('.animated');
+      const robot1 = document.getElementById('robot1');
+      const header = document.querySelector('header');
+
+      if (changedClass) {
+        robot1.classList.toggle('hide');
+        header.classList.toggle('animated');
+      }
+    };
   </script>
 </body>
 </html>
