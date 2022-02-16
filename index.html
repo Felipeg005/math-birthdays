@@ -134,10 +134,10 @@
       while (true) {
         if (differenceInDays < checkMathDays) {
           date.setDate(date.getDate() + checkMathDays);
-          console.log(date.getDate())
           if (date != 'Invalid Date') {
+            console.log(date)
             mathBirthdayText.innerHTML = `Your next math birthday is your ${checkMathDays}-day-old birthday on:<br>
-            <span class="date">${date.getUTCDay()} ${date.getUTCMonth()} ${date.getUTCFullYear()}</span>`;
+            <span class="date">${date.getDay()} ${date.getMonth()} ${date.getFullYear()}</span>`;
             break;
           } else {
             mathBirthdayText.innerHTML = `Your next math birthday is your ${checkMathDays}-day-old birthday,
