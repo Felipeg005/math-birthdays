@@ -70,7 +70,7 @@
       }
 
       #math-birthday-text {
-        color: white;
+        color: black;
       }
 
       #robot1 {
@@ -126,6 +126,7 @@
       const todaysDate = new Date();
       let date = new Date(dateValue);
       let differenceInDays = Math.round((todaysDate.getTime() - date.getTime()) / (1000 * 3600 * 24));
+      console
       let checkMathDays = 10;
 
       robot1.classList.add('hide');
@@ -136,7 +137,7 @@
           date.setDate(date.getDate() + checkMathDays);
           if (date != 'Invalid Date') {
             mathBirthdayText.innerHTML = `Your next math birthday is your ${checkMathDays}-day-old birthday on:<br>
-            <span class="date">${date.getUTCDay()} ${date.toLocaleString('default', { month: 'long' })} ${date.getUTCFullYear()}</span>`;
+            <span class="date">${date.getUTCDay()} ${date.getUTCMonth()} ${date.getUTCFullYear()}</span>`;
             break;
           } else {
             mathBirthdayText.innerHTML = `Your next math birthday is your ${checkMathDays}-day-old birthday,
