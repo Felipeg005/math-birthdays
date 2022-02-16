@@ -126,7 +126,6 @@
       const todaysDate = new Date();
       let date = new Date(dateValue);
       let differenceInDays = Math.round((todaysDate.getTime() - date.getTime()) / (1000 * 3600 * 24));
-      console.log(date.getDate())
       let checkMathDays = 10;
 
       robot1.classList.add('hide');
@@ -135,6 +134,7 @@
       while (true) {
         if (differenceInDays < checkMathDays) {
           date.setDate(date.getDate() + checkMathDays);
+          console.log(date.getDate())
           if (date != 'Invalid Date') {
             mathBirthdayText.innerHTML = `Your next math birthday is your ${checkMathDays}-day-old birthday on:<br>
             <span class="date">${date.getUTCDay()} ${date.getUTCMonth()} ${date.getUTCFullYear()}</span>`;
