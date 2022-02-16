@@ -135,8 +135,6 @@
         if (differenceInDays < checkMathDays) {
           date.setDate(date.getDate() + checkMathDays);
           if (date != 'Invalid Date') {
-            console.log(date)
-            console.log(date.getDay())
             mathBirthdayText.innerHTML = `Your next math birthday is your ${checkMathDays}-day-old birthday on:<br>
             <span class="date">${date.getDate()} ${date.toLocaleString('default', {month:"long"})} ${date.getFullYear()}</span>`;
             break;
